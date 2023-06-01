@@ -323,12 +323,12 @@ void level1(Player &player, Dificultate dif) {
                          << " Coins!"
                          << endl;
 
-                    Sleep(2000);
+                    Sleep(1400);
                     clear();
 
                 } else if (buy == '1' && player.coins <= 20) {
                     cout << "You don't have enough coins :(";
-                    Sleep(2000);
+                    Sleep(1200);
                 }
                 if (buy == '2' && player.coins >= 30) {
 
@@ -336,12 +336,12 @@ void level1(Player &player, Dificultate dif) {
                     player.coins -= 30;
                     cout << "You bought 10 attack damage! Now you have " << player.damage << " DMG and " << player.coins
                          << " Coins!" << endl;
-                    Sleep(2000);
+                    Sleep(1400);
                     clear();
 
                 } else if (buy == '2' && player.coins <= 30) {
                     cout << "You don't have enough coins :(";
-                    Sleep(2000);
+                    Sleep(1200);
                 }
 
                 if (buy == 'q') {
@@ -441,12 +441,12 @@ void level2(Player &player, Dificultate dif) {
                          << " Coins!"
                          << endl;
 
-                    Sleep(2000);
+                    Sleep(1400);
                     clear();
 
                 } else if (buy == '1' && player.coins <= 20) {
                     cout << "You don't have enough coins :(";
-                    Sleep(2000);
+                    Sleep(1200);
                 }
                 if (buy == '2' && player.coins >= 30) {
 
@@ -454,12 +454,12 @@ void level2(Player &player, Dificultate dif) {
                     player.coins -= 30;
                     cout << "You bought 10 attack damage! Now you have " << player.damage << " DMG and " << player.coins
                          << " Coins!" << endl;
-                    Sleep(2000);
+                    Sleep(1400);
                     clear();
 
                 } else if (buy == '2' && player.coins <= 30) {
                     cout << "You don't have enough coins :(";
-                    Sleep(2000);
+                    Sleep(1200);
                 }
 
                 if (buy == 'q') {
@@ -560,12 +560,12 @@ void level3(Player &player, Dificultate dif) {
                          << " Coins!"
                          << endl;
 
-                    Sleep(2000);
+                    Sleep(1400);
                     clear();
 
                 } else if (buy == '1' && player.coins <= 20) {
                     cout << "You don't have enough coins :(";
-                    Sleep(2000);
+                    Sleep(1200);
                 }
                 if (buy == '2' && player.coins >= 30) {
 
@@ -573,12 +573,12 @@ void level3(Player &player, Dificultate dif) {
                     player.coins -= 30;
                     cout << "You bought 10 attack damage! Now you have " << player.damage << " DMG and " << player.coins
                          << " Coins!" << endl;
-                    Sleep(2000);
+                    Sleep(1400);
                     clear();
 
                 } else if (buy == '2' && player.coins <= 30) {
                     cout << "You don't have enough coins :(";
-                    Sleep(2000);
+                    Sleep(1200);
                 }
 
                 if (buy == 'q') {
@@ -678,12 +678,12 @@ void level4(Player &player, Dificultate dif) {
                          << " Coins!"
                          << endl;
 
-                    Sleep(2000);
+                    Sleep(1400);
                     clear();
 
                 } else if (buy == '1' && player.coins <= 20) {
                     cout << "You don't have enough coins :(";
-                    Sleep(2000);
+                    Sleep(1200);
                 }
                 if (buy == '2' && player.coins >= 30) {
 
@@ -691,12 +691,12 @@ void level4(Player &player, Dificultate dif) {
                     player.coins -= 30;
                     cout << "You bought 10 attack damage! Now you have " << player.damage << " DMG and " << player.coins
                          << " Coins!" << endl;
-                    Sleep(2000);
+                    Sleep(1400);
                     clear();
 
                 } else if (buy == '2' && player.coins <= 30) {
                     cout << "You don't have enough coins :(";
-                    Sleep(2000);
+                    Sleep(1200);
                 }
 
                 if (buy == 'q') {
