@@ -1,5 +1,5 @@
 
-//Made by Lazar Iulian ,UPB OOP2 Final Exam.ASCII ART source: https://www.textartcopy.com/
+//Made by Lazar Iulian ,UPB OOP2 Final Exam.ASCII ART source: https://www.textartcopy.com/ and https://www.asciiart.eu/
 
 #include <iostream>
 #include <vector>
@@ -247,7 +247,17 @@ void DifStats(Enemies &enemy, Dificultate dif) {
             break;
     }
 }
-
+void KingDisplay(){
+    cout<<" .-._                                                   _,-,\n"
+          "  `._`-._                                           _,-'_,'\n"
+          "     `._ `-._                                   _,-' _,'\n"
+          "        `._  `-._        __.-----.__        _,-'  _,'\n"
+          "           `._   `#===\"\"\"           \"\"\"===#'   _,'\n"
+          "              `._/)  ._               _.  (\\_,'\n"
+          "               )*'     **.__     __.**     '*( \n"
+          "               #  .==..__  \"\"   \"\"  __..==,  # \n"
+          "               #   `\"._(_).       .(_)_.\"'   #";
+}
 void level2(Player &player, Dificultate dif);
 
 void level1(Player &player, Dificultate dif) {
@@ -306,7 +316,8 @@ void level1(Player &player, Dificultate dif) {
             if (buy == '1' && player.coins >= 20) {
                 player.life += 50;
                 player.coins -= 20;
-                cout << "You bought 50 HP potion. Now you have " << player.life << " HP and " << player.coins << " Coins!"
+                cout << "You bought 50 HP potion. Now you have " << player.life << " HP and " << player.coins
+                     << " Coins!"
                      << endl;
                 Sleep(2000);
                 clear();
@@ -417,7 +428,8 @@ void level2(Player &player, Dificultate dif) {
             if (buy == '1' && player.coins >= 20) {
                 player.life += 50;
                 player.coins -= 20;
-                cout << "You bought 50 HP potion. Now you have " << player.life << " HP and " << player.coins << " Coins!"
+                cout << "You bought 50 HP potion. Now you have " << player.life << " HP and " << player.coins
+                     << " Coins!"
                      << endl;
                 Sleep(2000);
                 clear();
@@ -528,7 +540,8 @@ void level3(Player &player, Dificultate dif) {
             if (buy == '1' && player.coins >= 20) {
                 player.life += 50;
                 player.coins -= 20;
-                cout << "You bought 50 HP potion. Now you have " << player.life << " HP and " << player.coins << " Coins!"
+                cout << "You bought 50 HP potion. Now you have " << player.life << " HP and " << player.coins
+                     << " Coins!"
                      << endl;
                 Sleep(2000);
                 clear();
@@ -638,7 +651,8 @@ void level4(Player &player, Dificultate dif) {
             if (buy == '1' && player.coins >= 20) {
                 player.life += 50;
                 player.coins -= 20;
-                cout << "You bought 50 HP potion. Now you have " << player.life << " HP and " << player.coins << " Coins!"
+                cout << "You bought 50 HP potion. Now you have " << player.life << " HP and " << player.coins
+                     << " Coins!"
                      << endl;
                 Sleep(2000);
                 clear();
@@ -690,8 +704,83 @@ void level4(Player &player, Dificultate dif) {
     }
 }
 
+void level4(Player &player,Dificultate dif);
+
 void level5(Player &player, Dificultate dif) {
-    cout << "da";
+    clear();
+
+    drawLine();
+    cout << "********************* Level 5 ********************" << endl;
+    KingDisplay();
+    Boss king;
+    DifStats(king, dif);
+    cout << "The " << king.name << " appears!" << endl;
+
+    while (player.life > 0 && king.life > 0) {
+        cout << "Player HP: " << player.life << " | monster HP: " << king.life << endl;
+        drawSquareLine();
+        cout << "Choose your action:" << endl;
+        cout << "1. Attack" << endl;
+        cout << "2. Run" << endl;
+
+        char option = getch();
+        clear();
+        switch (option) {
+            case '1': {
+                king.life -= player.damage;
+                cout << "You dealt " << player.damage << " damage to the robot!" << endl;
+                break;
+            }
+            case '2': {
+                cout << "You try to run away but failed!" << endl;
+                break;
+            }
+        }
+
+        if (king.life <= 0) {
+            cout << "You defeated the " << king.name << "!" << endl;
+            player.coins += king.reward;
+            Sleep(2000);
+            clear();
+
+            player.life -= king.damage;
+            cout << "The " << king.name << " dealt " << king.damage << " damage to you!" << endl;
+
+            if (player.life <= 0) {
+                cout << "You were defeated by the " << king.name << "!" << endl;
+                Sleep(2000);
+                clear();
+                startMenu();
+                return;
+            }
+
+            cout << endl;
+            Sleep(2000);
+
+            if (player.life > 0) {
+                cout << "Congratulations! You have completed the Game!" << endl;
+                //lvl4
+                cout << "Press any key to exit" << endl;
+                getch();
+                clear();
+                startMenu();
+                return;
+            }
+
+
+        } else {
+            player.life -= king.damage;
+            cout << "The " << king.name << " dealt " << king.damage << " damage to you!" << endl;
+
+            if (player.life <= 0) {
+                cout << "You were defeated by the " << king.name << "!" << endl;
+                Sleep(2000);
+                clear();
+                startMenu();
+                return;
+            }
+        }
+    }
 }
 
 void sleep(int ms) {
