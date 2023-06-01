@@ -51,17 +51,22 @@ public:
 // Enemy classes
 class Skeleton : public Enemies {
 public:
-    Skeleton() : Enemies("Skeleton", 30, 20, 50) {}
+    Skeleton() : Enemies("Skeleton", 120, 6, 50) {}
 };
 
 class Zombie : public Enemies {
 public:
-    Zombie() : Enemies("Zombie", 50, 10, 80) {}
+    Zombie() : Enemies("Zombie", 210, 10, 80) {}
 };
 
 class Dragon : public Enemies {
 public:
-    Dragon() : Enemies("Dragon", 200, 50, 100) {}
+    Dragon() : Enemies("Dragon", 340, 20, 100) {}
+};
+class Robot : public Enemies{
+public:
+    Robot() : Enemies("Robot", 500, 15, 200) {}
+
 };
 
 void startMenu() {
@@ -169,10 +174,22 @@ void zombieDisplay() {
             "                       {_-|-_}   \n"
             "                   ____%%@ @%%_______";
 }
+void RobotDisplay(){
+    cout<<"     ,     ,\n"
+          "    (\\____/)\n"
+          "     (_oo_)\n"
+          "       (O)\n"
+          "     __||__    \\)\n"
+          "  []/______\\[] /\n"
+          "  / \\______/ \\/\n"
+          " /    /__\\\n"
+          "(\\   /____\\";
+}
 
-void level2(Player &player);
+void level2(Player& player);
 
-void level1(Player &player) {
+void level1(Player& player)
+{
     clear();
 
     drawLine();
@@ -181,7 +198,8 @@ void level1(Player &player) {
     Skeleton monster;
     cout << "A " << monster.name << " appears!" << endl;
 
-    while (player.life > 0 && monster.life > 0) {
+    while (player.life > 0 && monster.life > 0)
+    {
         cout << "Player HP: " << player.life << " | Monster HP: " << monster.life << endl;
         drawSquareLine();
         cout << "Choose your action:" << endl;
@@ -190,312 +208,479 @@ void level1(Player &player) {
 
         char option = getch();
         clear();
-        switch (option) {
-            case '1': {
+        switch (option)
+        {
+            case '1':
+            {
                 monster.life -= player.damage;
-                cout << "You dealt " << player.damage << " damage to the monster!" << endl;
+                cout << "You dealt " << player.damage << " damage to the "<<monster.name<<" !" << endl;
                 break;
             }
-            case '2': {
+            case '2':
+            {
                 cout << "You try to run away but failed!" << endl;
                 break;
             }
         }
 
-        if (monster.life <= 0) {
+        if (monster.life <= 0)
+        {
             cout << "You defeated the " << monster.name << "!" << endl;
             player.coins += monster.reward;
             Sleep(2000);
             clear();
 
-
             player.life -= monster.damage;
             cout << "The " << monster.name << " dealt " << monster.damage << " damage to you!" << endl;
 
-            if (player.life <= 0) {
+            if (player.life <= 0)
+            {
                 cout << "You were defeated by the " << monster.name << "!" << endl;
                 Sleep(2000);
                 clear();
                 startMenu();
-                break;
+                return;
             }
 
             cout << endl;
-        }
-        Sleep(2000);
-        showShop();
-        char buy = getch();
-
-        if (buy == '1' && player.coins >= 20) {
-            player.life += 10;
-            player.coins -= 20;
-            cout << "You bought 10 hp " << "now you have " << player.life << "HP " << "and " << player.coins
-                 << " Coins" << " !";
             Sleep(2000);
-            clear();
-            cout << "Congratulations! You have completed Level 1!" << endl;
-            //lvl2
-            cout << "Press any key to continue to Level 2..." << endl;
-            getch();
-            clear();
-            level2(player);
-        } else {
-            cout << "You don't have enough coins :(";
-            Sleep(2000);
-            clear();
             showShop();
             char buy = getch();
-        }
-        if (buy == '2' && player.coins >= 10) {
-            player.damage += 5;
-            player.coins -= 10;
-            cout << "You bought 5 attack damage! " << "Now you have " << player.damage << "DMG " << "and "
-                 << player.coins
-                 << " Coins" << " !";
 
-            Sleep(2000);
-            clear();
-            cout << "Congratulations! You have completed Level 1!" << endl;
-            //lvl2
-            cout << "Press any key to continue to Level 2..." << endl;
-            getch();
-            clear();
-            level2(player);
-        } else {
-            cout << "You don't have enough coins :(";
-            Sleep(2000);
-            clear();
-            showShop();
-            char buy = getch();
-        }
-        if (buy == 'q') {
-            clear();
-            if (player.life > 0) {
+            if (buy == '1' && player.coins >= 20)
+            {
+                player.life += 10;
+                player.coins -= 20;
+                cout << "You bought 10 HP. Now you have " << player.life << " HP and " << player.coins << " Coins!" << endl;
+                Sleep(2000);
+                clear();
                 cout << "Congratulations! You have completed Level 1!" << endl;
                 //lvl2
                 cout << "Press any key to continue to Level 2..." << endl;
                 getch();
                 clear();
                 level2(player);
+                return;
+            }
+            else if (buy == '2' && player.coins >= 10)
+            {
+                player.damage += 5;
+                player.coins -= 10;
+                cout << "You bought 5 attack damage! Now you have " << player.damage << " DMG and " << player.coins << " Coins!" << endl;
+                Sleep(2000);
+                clear();
+                cout << "Congratulations! You have completed Level 1!" << endl;
+                //lvl2
+                cout << "Press any key to continue to Level 2..." << endl;
+                getch();
+                clear();
+                level2(player);
+                return;
+            }
+            else if (buy == 'q')
+            {
+                clear();
+                if (player.life > 0)
+                {
+                    cout << "Congratulations! You have completed Level 1!" << endl;
+                    //lvl2
+                    cout << "Press any key to continue to Level 2..." << endl;
+                    getch();
+                    clear();
+                    level2(player);
+                    return;
+                }
             }
         }
+        else
+        {
+            player.life -= monster.damage;
+            cout << "The " << monster.name << " dealt " << monster.damage << " damage to you!" << endl;
 
-
+            if (player.life <= 0)
+            {
+                cout << "You were defeated by the " << monster.name << "!" << endl;
+                Sleep(2000);
+                clear();
+                startMenu();
+                return;
+            }
+        }
     }
 }
 
-void level3(Player &player);
 
-void level2(Player &player) {
+void level3(Player& player);
+
+void level2(Player& player)
+{
     clear();
+
     drawLine();
     cout << "********************* Level 2 ********************" << endl;
     zombieDisplay();
     Zombie monster;
     cout << "A " << monster.name << " appears!" << endl;
 
-    while (player.life > 0 && monster.life > 0) {
-        cout << "Player life: " << player.life << " | Monster life: " << monster.life << endl;
+    while (player.life > 0 && monster.life > 0)
+    {
+        cout << "Player HP: " << player.life << " | Monster HP: " << monster.life << endl;
         drawSquareLine();
         cout << "Choose your action:" << endl;
         cout << "1. Attack" << endl;
         cout << "2. Run" << endl;
 
         char option = getch();
-
         clear();
-        switch (option) {
-            case '1': {
+        switch (option)
+        {
+            case '1':
+            {
                 monster.life -= player.damage;
                 cout << "You dealt " << player.damage << " damage to the monster!" << endl;
                 break;
             }
-            case '2': {
+            case '2':
+            {
                 cout << "You try to run away but failed!" << endl;
                 break;
             }
         }
 
-        if (monster.life <= 0) {
+        if (monster.life <= 0)
+        {
             cout << "You defeated the " << monster.name << "!" << endl;
+            player.coins += monster.reward;
             Sleep(2000);
             clear();
-            break;
-        }
 
-        // Monster's turn
-        player.life -= monster.damage;
-        cout << "The " << monster.name << " dealt " << monster.damage << " damage to you!" << endl;
+            player.life -= monster.damage;
+            cout << "The " << monster.name << " dealt " << monster.damage << " damage to you!" << endl;
 
-        if (player.life <= 0) {
-            cout << "You were defeated by the " << monster.name << "!" << endl;
+            if (player.life <= 0)
+            {
+                cout << "You were defeated by the " << monster.name << "!" << endl;
+                Sleep(2000);
+                clear();
+                startMenu();
+                return;
+            }
+
+            cout << endl;
             Sleep(2000);
-            clear();
-            startMenu();
-            break;
-        }
+            showShop();
+            char buy = getch();
 
-        cout << endl;
-    }
-    Sleep(2000);
-    showShop();
-    char buy = getch();
-    if (buy == '1') {
-        player.life += 10;
-        player.coins -= 20;
-        cout << "You bought 10 hp " << "now you have " << player.life << "HP " << "and " << player.coins
-             << " Coins" << " !";
-        Sleep(2000);
-        clear();
-        cout << "Congratulations! You have completed Level 2!" << endl;
-        //lvl2
-        cout << "Press any key to continue to Level 3..." << endl;
-        getch();
-        clear();
-        level3(player);
-    }
-    if (buy == '2') {
-        player.damage += 5;
-        player.coins -= 10;
-        cout << "You bought 5 attack damage! " << "Now you have " << player.damage << "DMG " << "and " << player.coins
-             << " Coins" << " !";
-        Sleep(2000);
-        clear();
-        cout << "Congratulations, " << player.name << " !" << " You have completed Level 1!" << endl;
-        //lvl2
-        cout << "Press any key to continue to Level 2..." << endl;
-        getch();
-        clear();
-        level3(player);
-    }
-    if (buy == 'q') {
-        clear();
-        if (player.life > 0) {
-            cout << "Congratulations, " << player.name << " !" << " You have completed Level 2!" << endl;
-            //lvl2
-            cout << "Press any key to continue to Level 3..." << endl;
-            getch();
-            clear();
-            level3(player);
+            if (buy == '1' && player.coins >= 20)
+            {
+                player.life += 10;
+                player.coins -= 20;
+                cout << "You bought 10 HP. Now you have " << player.life << " HP and " << player.coins << " Coins!" << endl;
+                Sleep(2000);
+                clear();
+                cout << "Congratulations! You have completed Level 2!" << endl;
+                //lvl3
+                cout << "Press any key to continue to Level 3..." << endl;
+                getch();
+                clear();
+                level3(player);
+                return;
+            }
+            else if (buy == '2' && player.coins >= 10)
+            {
+                player.damage += 5;
+                player.coins -= 10;
+                cout << "You bought 5 attack damage! Now you have " << player.damage << " DMG and " << player.coins << " Coins!" << endl;
+                Sleep(2000);
+                clear();
+                cout << "Congratulations! You have completed Level 2!" << endl;
+                //lvl3
+                cout << "Press any key to continue to Level 3..." << endl;
+                getch();
+                clear();
+                level3(player);
+                return;
+            }
+            else if (buy == 'q')
+            {
+                clear();
+                if (player.life > 0)
+                {
+                    cout << "Congratulations! You have completed Level 2!" << endl;
+                    //lvl3
+                    cout << "Press any key to continue to Level 3..." << endl;
+                    getch();
+                    clear();
+                    level3(player);
+                    return;
+                }
+            }
+        }
+        else
+        {
+            player.life -= monster.damage;
+            cout << "The " << monster.name << " dealt " << monster.damage << " damage to you!" << endl;
+
+            if (player.life <= 0)
+            {
+                cout << "You were defeated by the " << monster.name << "!" << endl;
+                Sleep(2000);
+                clear();
+                startMenu();
+                return;
+            }
         }
     }
 }
 
+void level4(Player& player);
 
-void level3(Player &player) {
+void level3(Player& player)
+{
     clear();
-    dragonDisplay();
+
     drawLine();
     cout << "********************* Level 3 ********************" << endl;
-    Dragon monster;
-    cout << "A " << monster.name << " appears!" << endl;
+    dragonDisplay();
+    Dragon dragon;
+    cout << "A " << dragon.name << " appears!" << endl;
 
-    while (player.life > 0 && monster.life > 0) {
-        cout << "Player life: " << player.life << " | Monster life: " << monster.life << endl;
+    while (player.life > 0 && dragon.life > 0)
+    {
+        cout << "Player HP: " << player.life << " | dragon HP: " << dragon.life << endl;
         drawSquareLine();
         cout << "Choose your action:" << endl;
         cout << "1. Attack" << endl;
         cout << "2. Run" << endl;
 
         char option = getch();
-
         clear();
-        switch (option) {
-            case '1': {
-                monster.life -= player.damage;
-                cout << "You dealt " << player.damage << " damage to the monster!" << endl;
+        switch (option)
+        {
+            case '1':
+            {
+                dragon.life -= player.damage;
+                cout << "You dealt " << player.damage << " damage to the dragon!" << endl;
                 break;
             }
-            case '2': {
+            case '2':
+            {
                 cout << "You try to run away but failed!" << endl;
                 break;
             }
         }
 
-        if (monster.life <= 0) {
-            cout << "You defeated the " << monster.name << "!" << endl;
+        if (dragon.life <= 0)
+        {
+            cout << "You defeated the " << dragon.name << "!" << endl;
+            player.coins += dragon.reward;
             Sleep(2000);
             clear();
-            break;
-        }
 
-        // Monster's turn
-        player.life -= monster.damage;
-        cout << "The " << monster.name << " dealt " << monster.damage << " damage to you!" << endl;
-        Sleep(2000);
-        clear();
-        if (player.life <= 0) {
-            cout << "You were defeated by the " << monster.name << "!" << endl;
+            player.life -= dragon.damage;
+            cout << "The " << dragon.name << " dealt " << dragon.damage << " damage to you!" << endl;
+
+            if (player.life <= 0)
+            {
+                cout << "You were defeated by the " << dragon.name << "!" << endl;
+                Sleep(2000);
+                clear();
+                startMenu();
+                return;
+            }
+
+            cout << endl;
             Sleep(2000);
+            showShop();
+            char buy = getch();
 
-            clear();
-            startMenu();
-            break;
+            if (buy == '1' && player.coins >= 20)
+            {
+                player.life += 10;
+                player.coins -= 20;
+                cout << "You bought 10 HP. Now you have " << player.life << " HP and " << player.coins << " Coins!" << endl;
+                Sleep(2000);
+                clear();
+                cout << "Congratulations! You have completed Level 3!" << endl;
+                //lvl4
+                cout << "Press any key to continue to Level 4..." << endl;
+                getch();
+                clear();
+                level4(player);
+                return;
+            }
+            else if (buy == '2' && player.coins >= 10)
+            {
+                player.damage += 5;
+                player.coins -= 10;
+                cout << "You bought 5 attack damage! Now you have " << player.damage << " DMG and " << player.coins << " Coins!" << endl;
+                Sleep(2000);
+                clear();
+                cout << "Congratulations! You have completed Level 3!" << endl;
+                //lvl4
+                cout << "Press any key to continue to Level 4..." << endl;
+                getch();
+                clear();
+                level4(player);
+                return;
+            }
+            else if (buy == 'q')
+            {
+                clear();
+                if (player.life > 0)
+                {
+                    cout << "Congratulations! You have completed Level 3!" << endl;
+                    //lvl4
+                    cout << "Press any key to continue to Level 4..." << endl;
+                    getch();
+                    clear();
+                    level4(player);
+                    return;
+                }
+            }
         }
+        else
+        {
+            player.life -= dragon.damage;
+            cout << "The " << dragon.name << " dealt " << dragon.damage << " damage to you!" << endl;
 
-        cout << endl;
-    }
-
-    Sleep(2000);
-    showShop();
-    char buy = getch();
-    if (buy == '1' && player.coins >= 20) {
-
-        player.life += 10;
-        player.coins -= 20;
-        cout << "You bought 10 hp " << "now you have " << player.life << "HP " << "and " << player.coins
-             << " Coins" << " !";
-
-        Sleep(2000);
-        clear();
-        cout << "Congratulations, " << player.name << " !" << " You have completed Level 3!" << endl;
-        //lvl2
-        cout << "You completed lvl 3" << endl;
-        getch();
-        clear();
-        startMenu();
-    } else {
-        cout << "You don't have enough coins :(";
-        cout << "Congratulations, " << player.name << " !" << " You have completed Level 3!" << endl;
-        //lvl2
-        cout << "You completed lvl 3" << endl;
-        getch();
-        clear();
-        startMenu();
-    }
-
-    if (buy == '2' && player.coins >= 10) {
-
-        player.damage += 5;
-        player.coins -= 10;
-        cout << "You bought 5 attack damage! " << "Now you have " << player.damage << " attack damage " << "and "
-             << player.coins
-             << " Coins" << " !";
-        Sleep(2000);
-        clear();
-        cout << "Congratulations, " << player.name << " !" << " You have completed Level 3!" << endl;
-        //lvl2
-        cout << "You completed the game!" << endl;
-        getch();
-        clear();
-        startMenu();
-    } else { cout << "You don't have enough coins :("; }
-    if (buy == 'q') {
-        clear();
-        if (player.life > 0) {
-            cout << "Congratulations! You have completed Level 3!" << endl;
-            //lvl3
-            cout << "You completed the game" << endl;
-            getch();
-            clear();
-            startMenu();
+            if (player.life <= 0)
+            {
+                cout << "You were defeated by the " << dragon.name << "!" << endl;
+                Sleep(2000);
+                clear();
+                startMenu();
+                return;
+            }
         }
     }
-
-
 }
 
+void level5(Player& player);
 
+void level4(Player& player)
+{
+    clear();
+
+    drawLine();
+    cout << "********************* Level 4 ********************" << endl;
+    RobotDisplay();
+    Robot robot;
+    cout << "A " << robot.name << " appears!" << endl;
+
+    while (player.life > 0 && robot.life > 0)
+    {
+        cout << "Player HP: " << player.life << " | dragon HP: " << robot.life << endl;
+        drawSquareLine();
+        cout << "Choose your action:" << endl;
+        cout << "1. Attack" << endl;
+        cout << "2. Run" << endl;
+
+        char option = getch();
+        clear();
+        switch (option)
+        {
+            case '1':
+            {
+                robot.life -= player.damage;
+                cout << "You dealt " << player.damage << " damage to the robot!" << endl;
+                break;
+            }
+            case '2':
+            {
+                cout << "You try to run away but failed!" << endl;
+                break;
+            }
+        }
+
+        if (robot.life <= 0)
+        {
+            cout << "You defeated the " << robot.name << "!" << endl;
+            player.coins += robot.reward;
+            Sleep(2000);
+            clear();
+
+            player.life -= robot.damage;
+            cout << "The " << robot.name << " dealt " << robot.damage << " damage to you!" << endl;
+
+            if (player.life <= 0)
+            {
+                cout << "You were defeated by the " << robot.name << "!" << endl;
+                Sleep(2000);
+                clear();
+                startMenu();
+                return;
+            }
+
+            cout << endl;
+            Sleep(2000);
+            showShop();
+            char buy = getch();
+
+            if (buy == '1' && player.coins >= 20)
+            {
+                player.life += 10;
+                player.coins -= 20;
+                cout << "You bought 10 HP. Now you have " << player.life << " HP and " << player.coins << " Coins!" << endl;
+                Sleep(2000);
+                clear();
+                cout << "Congratulations! You have completed Level 4!" << endl;
+                //lvl4
+                cout << "Press any key to continue to Level 5..." << endl;
+                getch();
+                clear();
+                level4(player);
+                return;
+            }
+            else if (buy == '2' && player.coins >= 10)
+            {
+                player.damage += 5;
+                player.coins -= 10;
+                cout << "You bought 5 attack damage! Now you have " << player.damage << " DMG and " << player.coins << " Coins!" << endl;
+                Sleep(2000);
+                clear();
+                cout << "Congratulations! You have completed Level 4!" << endl;
+                //lvl4
+                cout << "Press any key to continue to Level 5..." << endl;
+                getch();
+                clear();
+                level4(player);
+                return;
+            }
+            else if (buy == 'q')
+            {
+                clear();
+                if (player.life > 0)
+                {
+                    cout << "Congratulations! You have completed Level 4!" << endl;
+                    //lvl4
+                    cout << "Press any key to continue to Level 5..." << endl;
+                    getch();
+                    clear();
+                    level5(player);
+                    return;
+                }
+            }
+        }
+        else
+        {
+            player.life -= robot.damage;
+            cout << "The " << robot.name << " dealt " << robot.damage << " damage to you!" << endl;
+
+            if (player.life <= 0)
+            {
+                cout << "You were defeated by the " << robot.name << "!" << endl;
+                Sleep(2000);
+                clear();
+                startMenu();
+                return;
+            }
+        }
+    }
+}
+void level5(Player& player){
+    cout<<"da";
+}
 void sleep(int ms) {
     Sleep(ms);
 }
