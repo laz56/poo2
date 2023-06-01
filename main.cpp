@@ -1,6 +1,6 @@
 
 //Made by Lazar Iulian ,UPB OOP2 Final Exam.ASCII ART source: https://www.textartcopy.com/
-//change
+
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -74,16 +74,25 @@ public:
 
 };
 
+class Boss : public Enemies {
+public:
+    Boss() : Enemies("The Dungeon King", 1000, 25, 900) {}
+};
+
 void startMenu() {
     clear();
     cout << "*******************************************" << endl;
-    cout << "***************Dungeon Quest***************" << endl;
+    cout << "*************** Dungeon Quest *************" << endl;
     cout << "*******************************************" << endl;
     cout << "*******************************************" << endl;
-    cout << "*************Play the game (type a)*********" << endl;
+    cout << "*********** Play the game (press a) *******" << endl;
     cout << "*******************************************" << endl;
-    cout << "**************Credits (type c)**************" << endl;
+    cout << "*************Credits  (press c) ***********" << endl;
     cout << "*******************************************" << endl;
+    cout << "*******************************************" << endl;
+    cout << "*******************************************" << endl;
+    cout << "*******************************************" << endl;
+
 }
 
 void showDifMenu() {
@@ -105,25 +114,30 @@ void showDifMenu() {
 
 void showShop() {
     clear();
-    cout << "*************Welcome*to*Shop***************" << endl;
     cout << "*******************************************" << endl;
-    cout << "*********(1)****Buy*10*HP*(20*coins)******" << endl;
     cout << "*******************************************" << endl;
-    cout << "******(2)**Buy*5*attack*damage*(10*coins)**" << endl;
+    cout << "************* Welcome to Shop ***************" << endl;
     cout << "*******************************************" << endl;
-    cout << "****************(q)Quit********************" << endl;
+    cout << "*******(1)**** Buy potion(life+50) 20 coins***" << endl;
+    cout << "*******************************************" << endl;
+    cout << "******(2)** Buy AD potion(damage+10)30 coins **" << endl;
+    cout << "*******************************************" << endl;
+    cout << "**************** (q)Quit ********************" << endl;
+    cout << "*******************************************" << endl;
     cout << "*******************************************" << endl;
 }
 
 void ChooseClass() {
     clear();
     cout << "**************************************************" << endl;
-    cout << "***************** Select your class ****************" << endl;
-    cout << "***************** (1) Warrior *********************" << endl;
     cout << "**************************************************" << endl;
-    cout << "***************** (2) Mage ************************" << endl;
+    cout << "***************** Select your class **************" << endl;
+    cout << "***************** (1) Warrior ********************" << endl;
     cout << "**************************************************" << endl;
-    cout << "***************** (3) Medic ***********************" << endl;
+    cout << "***************** (2) Mage ***********************" << endl;
+    cout << "**************************************************" << endl;
+    cout << "***************** (3) Medic **********************" << endl;
+    cout << "**************************************************" << endl;
     cout << "**************************************************" << endl;
 }
 
@@ -136,7 +150,8 @@ void credits() {
     cout << "************* Made with love by ************" << endl;
     cout << "*******************************************" << endl;
     cout << "************* Lazar Iulian <3 **************" << endl;
-    cout << "********* press q to return ***************" << endl;
+    cout << "********* press (q) to return *************" << endl;
+    cout << "*******************************************" << endl;
 }
 
 void drawLine() {
@@ -233,16 +248,16 @@ void DifStats(Enemies &enemy, Dificultate dif) {
     }
 }
 
-void level2(Player &player,Dificultate dif);
+void level2(Player &player, Dificultate dif);
 
-void level1(Player &player,Dificultate dif) {
+void level1(Player &player, Dificultate dif) {
     clear();
 
     drawLine();
     cout << "********************* Level 1 ********************" << endl;
     skeletonDisplay();
     Skeleton monster;
-    DifStats(monster,dif);
+    DifStats(monster, dif);
     cout << "A " << monster.name << " appears!" << endl;
 
     while (player.life > 0 && monster.life > 0) {
@@ -289,9 +304,9 @@ void level1(Player &player,Dificultate dif) {
             char buy = getch();
 
             if (buy == '1' && player.coins >= 20) {
-                player.life += 10;
+                player.life += 50;
                 player.coins -= 20;
-                cout << "You bought 10 HP. Now you have " << player.life << " HP and " << player.coins << " Coins!"
+                cout << "You bought 50 HP potion. Now you have " << player.life << " HP and " << player.coins << " Coins!"
                      << endl;
                 Sleep(2000);
                 clear();
@@ -300,12 +315,12 @@ void level1(Player &player,Dificultate dif) {
                 cout << "Press any key to continue to Level 2..." << endl;
                 getch();
                 clear();
-                level2(player,dif);
+                level2(player, dif);
                 return;
-            } else if (buy == '2' && player.coins >= 10) {
-                player.damage += 5;
-                player.coins -= 10;
-                cout << "You bought 5 attack damage! Now you have " << player.damage << " DMG and " << player.coins
+            } else if (buy == '2' && player.coins >= 30) {
+                player.damage += 10;
+                player.coins -= 30;
+                cout << "You bought 10 attack damage! Now you have " << player.damage << " DMG and " << player.coins
                      << " Coins!" << endl;
                 Sleep(2000);
                 clear();
@@ -314,7 +329,7 @@ void level1(Player &player,Dificultate dif) {
                 cout << "Press any key to continue to Level 2..." << endl;
                 getch();
                 clear();
-                level2(player,dif);
+                level2(player, dif);
                 return;
             } else if (buy == 'q') {
                 clear();
@@ -324,7 +339,7 @@ void level1(Player &player,Dificultate dif) {
                     cout << "Press any key to continue to Level 2..." << endl;
                     getch();
                     clear();
-                    level2(player,dif);
+                    level2(player, dif);
                     return;
                 }
             }
@@ -344,16 +359,16 @@ void level1(Player &player,Dificultate dif) {
 }
 
 
-void level3(Player &player,Dificultate dif);
+void level3(Player &player, Dificultate dif);
 
-void level2(Player &player,Dificultate dif) {
+void level2(Player &player, Dificultate dif) {
     clear();
 
     drawLine();
     cout << "********************* Level 2 ********************" << endl;
     zombieDisplay();
     Zombie monster;
-    DifStats(monster,dif);
+    DifStats(monster, dif);
     cout << "A " << monster.name << " appears!" << endl;
 
     while (player.life > 0 && monster.life > 0) {
@@ -400,9 +415,9 @@ void level2(Player &player,Dificultate dif) {
             char buy = getch();
 
             if (buy == '1' && player.coins >= 20) {
-                player.life += 10;
+                player.life += 50;
                 player.coins -= 20;
-                cout << "You bought 10 HP. Now you have " << player.life << " HP and " << player.coins << " Coins!"
+                cout << "You bought 50 HP potion. Now you have " << player.life << " HP and " << player.coins << " Coins!"
                      << endl;
                 Sleep(2000);
                 clear();
@@ -411,12 +426,12 @@ void level2(Player &player,Dificultate dif) {
                 cout << "Press any key to continue to Level 3..." << endl;
                 getch();
                 clear();
-                level3(player,dif);
+                level3(player, dif);
                 return;
-            } else if (buy == '2' && player.coins >= 10) {
-                player.damage += 5;
-                player.coins -= 10;
-                cout << "You bought 5 attack damage! Now you have " << player.damage << " DMG and " << player.coins
+            } else if (buy == '2' && player.coins >= 30) {
+                player.damage += 10;
+                player.coins -= 30;
+                cout << "You bought 10 attack damage! Now you have " << player.damage << " DMG and " << player.coins
                      << " Coins!" << endl;
                 Sleep(2000);
                 clear();
@@ -425,7 +440,7 @@ void level2(Player &player,Dificultate dif) {
                 cout << "Press any key to continue to Level 3..." << endl;
                 getch();
                 clear();
-                level3(player,dif);
+                level3(player, dif);
                 return;
             } else if (buy == 'q') {
                 clear();
@@ -435,7 +450,7 @@ void level2(Player &player,Dificultate dif) {
                     cout << "Press any key to continue to Level 3..." << endl;
                     getch();
                     clear();
-                    level3(player,dif);
+                    level3(player, dif);
                     return;
                 }
             }
@@ -454,16 +469,16 @@ void level2(Player &player,Dificultate dif) {
     }
 }
 
-void level4(Player &player,Dificultate dif);
+void level4(Player &player, Dificultate dif);
 
-void level3(Player &player,Dificultate dif) {
+void level3(Player &player, Dificultate dif) {
     clear();
 
     drawLine();
     cout << "********************* Level 3 ********************" << endl;
-    skeletonDisplay();
-    Skeleton monster;
-    DifStats(monster,dif);
+    DragonDisplay();
+    Dragon monster;
+    DifStats(monster, dif);
 
     cout << "A " << monster.name << " appears!" << endl;
 
@@ -511,9 +526,9 @@ void level3(Player &player,Dificultate dif) {
             char buy = getch();
 
             if (buy == '1' && player.coins >= 20) {
-                player.life += 10;
+                player.life += 50;
                 player.coins -= 20;
-                cout << "You bought 10 HP. Now you have " << player.life << " HP and " << player.coins << " Coins!"
+                cout << "You bought 50 HP potion. Now you have " << player.life << " HP and " << player.coins << " Coins!"
                      << endl;
                 Sleep(2000);
                 clear();
@@ -522,12 +537,12 @@ void level3(Player &player,Dificultate dif) {
                 cout << "Press any key to continue to Level 4..." << endl;
                 getch();
                 clear();
-                level4(player,dif);
+                level4(player, dif);
                 return;
-            } else if (buy == '2' && player.coins >= 10) {
-                player.damage += 5;
-                player.coins -= 10;
-                cout << "You bought 5 attack damage! Now you have " << player.damage << " DMG and " << player.coins
+            } else if (buy == '2' && player.coins >= 30) {
+                player.damage += 10;
+                player.coins -= 30;
+                cout << "You bought 10 attack damage! Now you have " << player.damage << " DMG and " << player.coins
                      << " Coins!" << endl;
                 Sleep(2000);
                 clear();
@@ -536,7 +551,7 @@ void level3(Player &player,Dificultate dif) {
                 cout << "Press any key to continue to Level 4..." << endl;
                 getch();
                 clear();
-                level4(player,dif);
+                level4(player, dif);
                 return;
             } else if (buy == 'q') {
                 clear();
@@ -546,7 +561,7 @@ void level3(Player &player,Dificultate dif) {
                     cout << "Press any key to continue to Level 4..." << endl;
                     getch();
                     clear();
-                    level4(player,dif);
+                    level4(player, dif);
                     return;
                 }
             }
@@ -565,16 +580,16 @@ void level3(Player &player,Dificultate dif) {
     }
 }
 
-void level5(Player &player,Dificultate dif);
+void level5(Player &player, Dificultate dif);
 
-void level4(Player &player,Dificultate dif) {
+void level4(Player &player, Dificultate dif) {
     clear();
 
     drawLine();
     cout << "********************* Level 4 ********************" << endl;
     RobotDisplay();
     Robot robot;
-    DifStats(robot,dif);
+    DifStats(robot, dif);
     cout << "A " << robot.name << " appears!" << endl;
 
     while (player.life > 0 && robot.life > 0) {
@@ -621,9 +636,9 @@ void level4(Player &player,Dificultate dif) {
             char buy = getch();
 
             if (buy == '1' && player.coins >= 20) {
-                player.life += 10;
+                player.life += 50;
                 player.coins -= 20;
-                cout << "You bought 10 HP. Now you have " << player.life << " HP and " << player.coins << " Coins!"
+                cout << "You bought 50 HP potion. Now you have " << player.life << " HP and " << player.coins << " Coins!"
                      << endl;
                 Sleep(2000);
                 clear();
@@ -632,12 +647,12 @@ void level4(Player &player,Dificultate dif) {
                 cout << "Press any key to continue to Level 5..." << endl;
                 getch();
                 clear();
-                level5(player,dif);
+                level5(player, dif);
                 return;
-            } else if (buy == '2' && player.coins >= 10) {
-                player.damage += 5;
-                player.coins -= 10;
-                cout << "You bought 5 attack damage! Now you have " << player.damage << " DMG and " << player.coins
+            } else if (buy == '2' && player.coins >= 30) {
+                player.damage += 10;
+                player.coins -= 30;
+                cout << "You bought 10 attack damage! Now you have " << player.damage << " DMG and " << player.coins
                      << " Coins!" << endl;
                 Sleep(2000);
                 clear();
@@ -646,7 +661,7 @@ void level4(Player &player,Dificultate dif) {
                 cout << "Press any key to continue to Level 5..." << endl;
                 getch();
                 clear();
-                level5(player,dif);
+                level5(player, dif);
                 return;
             } else if (buy == 'q') {
                 clear();
@@ -656,7 +671,7 @@ void level4(Player &player,Dificultate dif) {
                     cout << "Press any key to continue to Level 5..." << endl;
                     getch();
                     clear();
-                    level5(player,dif);
+                    level5(player, dif);
                     return;
                 }
             }
@@ -675,7 +690,7 @@ void level4(Player &player,Dificultate dif) {
     }
 }
 
-void level5(Player &player,Dificultate dif) {
+void level5(Player &player, Dificultate dif) {
     cout << "da";
 }
 
@@ -716,22 +731,24 @@ int main() {
                         switch (option) {
                             case '1':
                                 dif = Dificultate::Easy;
-
+                                clear();
                                 cout << "You chose Easy difficulty!";
 
                                 break;
                             case '2':
                                 dif = Dificultate::Medium;
+                                clear();
                                 cout << "You chose Medium difficulty!";
                                 break;
                             case '3':
                                 dif = Dificultate::Hard;
+                                clear();
                                 cout << "You chose Hard difficulty!";
                                 break;
                         }
                         Sleep(2000);
 
-                        level1(warrior,dif);
+                        level1(warrior, dif);
                         break;
                     }
                     case '2': {
@@ -746,20 +763,23 @@ int main() {
                         switch (option) {
                             case '1':
                                 dif = Dificultate::Easy;
+                                clear();
                                 cout << "You chose Easy difficulty!";
                                 break;
                             case '2':
                                 dif = Dificultate::Medium;
+                                clear();
                                 cout << "You chose Medium difficulty!";
                                 break;
                             case '3':
                                 dif = Dificultate::Hard;
+                                clear();
                                 cout << "You chose Hard difficulty!";
                                 break;
                         }
                         Sleep(2000);
 
-                        level1(mage,dif);
+                        level1(mage, dif);
                         break;
                     }
                     case '3': {
@@ -775,19 +795,22 @@ int main() {
                             case '1':
                                 dif = Dificultate::Easy;
                                 break;
+                                clear();
                                 cout << "You chose Easy difficulty!";
                             case '2':
                                 dif = Dificultate::Medium;
+                                clear();
                                 cout << "You chose Medium difficulty!";
                                 break;
                             case '3':
                                 dif = Dificultate::Hard;
+                                clear();
                                 cout << "You chose Hard difficulty!";
                                 break;
                         }
                         Sleep(2000);
 
-                        level1(medic,dif);
+                        level1(medic, dif);
                         break;
                     }
                 }
