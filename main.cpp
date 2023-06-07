@@ -9,7 +9,7 @@ using namespace clase;
 
 int main() {
 
-Game joc;
-joc.gameRun();
-return 0;
+    Game joc;
+    joc.gameRun();
+    return 0;
 }
