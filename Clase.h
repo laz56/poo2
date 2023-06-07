@@ -15,7 +15,7 @@ namespace clase {
         int coins = 0;
 
         Player(std::string _name, int _life, unsigned int _damage, int _coins) : name(_name), life(_life), damage(_damage),
-                                                                            coins(_coins) {}
+                                                                                 coins(_coins) {}
     };
 
     class Enemies {
@@ -26,7 +26,7 @@ namespace clase {
         int reward;
 
         Enemies(std::string _name, int _life, unsigned int _damage, int _reward) : name(_name), life(_life), damage(_damage),
-                                                                              reward(_reward) {}
+                                                                                   reward(_reward) {}
     };
 
     enum class Dificultate {

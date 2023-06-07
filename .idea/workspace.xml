@@ -9,7 +9,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecbd3a36-f856-4c9a-b4fc-aafb25bbbbb2" name="Changes" comment="toate fisierele" />
+    <list default="true" id="ecbd3a36-f856-4c9a-b4fc-aafb25bbbbb2" name="Changes" comment="toate fisierele">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Clase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Clase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.exe" beforeDir="false" afterPath="$PROJECT_DIR$/main.exe" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +47,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -67,6 +73,10 @@
       <workItem from="1685984663528" duration="112000" />
       <workItem from="1685984889806" duration="539000" />
       <workItem from="1685986237826" duration="541000" />
+      <workItem from="1685986799782" duration="151000" />
+      <workItem from="1685988769206" duration="132000" />
+      <workItem from="1686040540097" duration="795000" />
+      <workItem from="1686134333471" duration="1877000" />
     </task>
     <task id="LOCAL-00001" summary="first try">
       <created>1685528839463</created>
@@ -103,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685986638786</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="toate fisierele">
+      <created>1685986818333</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1685986818333</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
